@@ -12,12 +12,12 @@ class PokemonStatsModel {
   final String atk1;
   final String atk2;
   final String description;
-  final double hpSts;
-  final double atkSts;
-  final double defSts;
-  final double satkSts;
-  final double sdefSts;
-  final double spdSts;
+  final int hpSts;
+  final int atkSts;
+  final int defSts;
+  final int satkSts;
+  final int sdefSts;
+  final int spdSts;
   final String img;
   final Color bgColor;
 

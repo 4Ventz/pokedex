@@ -2,33 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/src/modules/details/pokemon_model.dart';
 
 class DetailsPage extends StatelessWidget {
-  PokemonStatsModel pokemonStatsModel = PokemonStatsModel(
-    id: '001',
-    name: 'Bulbasaur',
-    type1Text: 'Grass',
-    type2Text: "Poison",
-    type1Color: '#74CB48',
-    type2Color: '#A43E9E',
-    weight: 6.9,
-    height: 0.7,
-    atk1: 'Chlorophyll',
-    atk2: 'Overgrow',
-    description:
-        'There is a plant seed on its back right from the day this pokemon is born. The seed slowly grows larger',
-    hpSts: 45,
-    atkSts: 49,
-    defSts: 49,
-    satkSts: 65,
-    sdefSts: 65,
-    spdSts: 45,
-    img: 'assets/img/bulbasaur.png',
-    bgColor: '#74CB48',
-  );
-
   DetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final pokemonStatsModel = ModalRoute.of(context)!.settings.arguments as PokemonStatsModel;
     return Scaffold(
       backgroundColor: pokemonStatsModel.bgColor,
 
@@ -324,13 +302,15 @@ class DetailsPage extends StatelessWidget {
                                     children: [
                                       Row(
                                         children: [
-                                          Text(pokemonStatsModel.hpSts.toString()),
+                                          Text(
+                                            pokemonStatsModel.hpSts.toString().padLeft(3, '0'),
+                                          ),
                                           const SizedBox(width: 5),
                                           // Linear indicator
-                                          const SizedBox(
-                                            width: 240,
+                                          SizedBox(
+                                            width: 210,
                                             child: LinearProgressIndicator(
-                                              value: 0.25,
+                                              value: pokemonStatsModel.hpSts / 250,
                                               color: Colors.blue,
                                               backgroundColor: Colors.grey,
                                             ),
@@ -341,13 +321,15 @@ class DetailsPage extends StatelessWidget {
                                       // ATK - Progress bar
                                       Row(
                                         children: [
-                                          Text(pokemonStatsModel.atkSts.toString()),
+                                          Text(
+                                            pokemonStatsModel.atkSts.toString().padLeft(3, '0'),
+                                          ),
                                           const SizedBox(width: 5),
                                           // Linear indicator
-                                          const SizedBox(
-                                            width: 240,
+                                          SizedBox(
+                                            width: 210,
                                             child: LinearProgressIndicator(
-                                              value: 0.25,
+                                              value: pokemonStatsModel.atkSts / 250,
                                               color: Colors.blue,
                                               backgroundColor: Colors.grey,
                                             ),
@@ -358,13 +340,15 @@ class DetailsPage extends StatelessWidget {
                                       // DEF - Progress bar
                                       Row(
                                         children: [
-                                          Text(pokemonStatsModel.defSts.toString()),
+                                          Text(
+                                            pokemonStatsModel.defSts.toString().padLeft(3, '0'),
+                                          ),
                                           const SizedBox(width: 5),
                                           // Linear indicator
-                                          const SizedBox(
-                                            width: 240,
+                                          SizedBox(
+                                            width: 210,
                                             child: LinearProgressIndicator(
-                                              value: 0.25,
+                                              value: pokemonStatsModel.defSts / 250,
                                               color: Colors.blue,
                                               backgroundColor: Colors.grey,
                                             ),
@@ -376,13 +360,14 @@ class DetailsPage extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                              (pokemonStatsModel.satkSts * 100).toStringAsFixed(0)),
+                                            pokemonStatsModel.satkSts.toString().padLeft(3, '0'),
+                                          ),
                                           const SizedBox(width: 5),
                                           // Linear indicator
-                                          const SizedBox(
-                                            width: 240,
+                                          SizedBox(
+                                            width: 210,
                                             child: LinearProgressIndicator(
-                                              value: 0.25,
+                                              value: pokemonStatsModel.satkSts / 250,
                                               color: Colors.blue,
                                               backgroundColor: Colors.grey,
                                             ),
@@ -394,13 +379,14 @@ class DetailsPage extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                              (pokemonStatsModel.sdefSts * 100).toStringAsFixed(0)),
+                                            pokemonStatsModel.sdefSts.toString().padLeft(3, '0'),
+                                          ),
                                           const SizedBox(width: 5),
                                           // Linear indicator
-                                          const SizedBox(
-                                            width: 240,
+                                          SizedBox(
+                                            width: 210,
                                             child: LinearProgressIndicator(
-                                              value: 0.25,
+                                              value: pokemonStatsModel.sdefSts / 250,
                                               color: Colors.blue,
                                               backgroundColor: Colors.grey,
                                             ),
@@ -411,13 +397,15 @@ class DetailsPage extends StatelessWidget {
                                       // SPD - Progress bar
                                       Row(
                                         children: [
-                                          Text(pokemonStatsModel.spdSts.toString()),
+                                          Text(
+                                            pokemonStatsModel.spdSts.toString().padLeft(3, '0'),
+                                          ),
                                           const SizedBox(width: 5),
                                           // Linear indicator
-                                          const SizedBox(
-                                            width: 240,
+                                          SizedBox(
+                                            width: 210,
                                             child: LinearProgressIndicator(
-                                              value: 0.25,
+                                              value: pokemonStatsModel.spdSts / 250,
                                               color: Colors.blue,
                                               backgroundColor: Colors.grey,
                                             ),
@@ -437,7 +425,7 @@ class DetailsPage extends StatelessWidget {
                       top: MediaQuery.of(context).size.width / 6,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
+                        child: Image.network(
                           pokemonStatsModel.img,
                           width: MediaQuery.of(context).size.width / 2,
                         ),

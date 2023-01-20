@@ -15,7 +15,7 @@ class AppWidget extends StatelessWidget {
       ),
       initialRoute: '/list',
       routes: {
-        '/list': (context) => const ListPage(),
+        '/list': (context) => ListPage(),
         '/details': (context) => DetailsPage(),
       },
     );
